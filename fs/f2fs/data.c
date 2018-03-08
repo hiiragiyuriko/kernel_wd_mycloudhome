@@ -468,7 +468,11 @@ void f2fs_submit_page_write(struct f2fs_io_info *fio)
 	struct f2fs_bio_info *io = sbi->write_io[btype] + fio->temp;
 	struct page *bio_page;
 
-	f2fs_bug_on(sbi, is_read_io(fio->op));
+	io = is_read ? &sbi->read_io : &sbi->write_io[btype];
+
+	if (fio->old_blkaddr != NEW_ADDR)
+		verify_block_addr(fio, fio->old_blkaddr);
+	verify_block_addr(fio, fio->new_blkaddr);
 
 	down_write(&io->io_rwsem);
 next:
