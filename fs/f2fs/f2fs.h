@@ -2701,6 +2701,13 @@ static inline bool is_valid_blkaddr(block_t blkaddr)
 	return true;
 }
 
+static inline bool is_valid_blkaddr(block_t blkaddr)
+{
+	if (blkaddr == NEW_ADDR || blkaddr == NULL_ADDR)
+		return false;
+	return true;
+}
+
 /*
  * file.c
  */
