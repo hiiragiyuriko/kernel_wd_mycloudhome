@@ -189,6 +189,27 @@ void f2fs_inode_chksum_set(struct f2fs_sb_info *sbi, struct page *page)
 static bool sanity_check_inode(struct inode *inode)
 {
 	struct f2fs_sb_info *sbi = F2FS_I_SB(inode);
+	unsigned long long iblocks;
+
+	iblocks = le64_to_cpu(F2FS_INODE(node_page)->i_blocks);
+	if (!iblocks) {
+		set_sbi_flag(sbi, SBI_NEED_FSCK);
+		f2fs_msg(sbi->sb, KERN_WARNING,
+			"%s: corrupted inode i_blocks i_ino=%lx iblocks=%llu, "
+			"run fsck to fix.",
+			__func__, inode->i_ino, iblocks);
+		return false;
+	}
+
+	if (ino_of_node(node_page) != nid_of_node(node_page)) {
+		set_sbi_flag(sbi, SBI_NEED_FSCK);
+		f2fs_msg(sbi->sb, KERN_WARNING,
+			"%s: corrupted inode footer i_ino=%lx, ino,nid: "
+			"[%u, %u] run fsck to fix.",
+			__func__, inode->i_ino,
+			ino_of_node(node_page), nid_of_node(node_page));
+		return false;
+	}
 
 	if (f2fs_sb_has_flexible_inline_xattr(sbi->sb)
 			&& !f2fs_has_extra_attr(inode)) {
