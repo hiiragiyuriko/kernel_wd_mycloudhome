@@ -276,4 +276,7 @@ static inline void cpu_smt_check_topology_early(void) { }
 static inline void cpu_smt_check_topology(void) { }
 #endif
 
+#define IDLE_START 1
+#define IDLE_END 2
+
 #endif /* _LINUX_CPU_H_ */
