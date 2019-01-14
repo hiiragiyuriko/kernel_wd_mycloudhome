@@ -1,0 +1,8 @@
+config RTK_USB
+        tristate "Realtek USB Helper"
+        depends on USB
+        ---help---
+          Help message of RTK_USB
+
+
+
