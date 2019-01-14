@@ -1,8 +1,8 @@
-config RTK_USB
-        tristate "Realtek USB Helper"
+config RTK_BTUSB
+        tristate "Realtek BT USB"
         depends on USB
         ---help---
-          Help message of RTK_USB
+          Help message of RTK_BTUSB
 
 
 
