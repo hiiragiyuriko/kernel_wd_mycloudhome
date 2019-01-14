@@ -25,6 +25,9 @@
 # Alternatively, see http://www.gnu.org/licenses/gpl-2.0.txt
 #
 
+GP_CHIP := GP712
+ccflags-y                       += -DGP712
+
 obj-m += greenpeak_$(GP_CHIP)_drv.o
 
 greenpeak_$(GP_CHIP)_drv-objs :=    gpCore.o   \

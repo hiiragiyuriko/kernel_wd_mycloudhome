@@ -1,5 +1,5 @@
 config GP712
-        tristate "Greanpeak 712"
+        tristate "Greenpeak 712"
         default m
         ---help---
           Help message of GP712

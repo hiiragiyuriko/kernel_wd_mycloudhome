@@ -2,4 +2,4 @@ source "drivers/phoenix/rtl8821cu/Kconfig"
 
 source "drivers/phoenix/GP712drv/Kconfig"
 
-source "drivers/phoenix/bluetooth/Kconfig"
+source "drivers/phoenix/rtk_btusb/Kconfig"
