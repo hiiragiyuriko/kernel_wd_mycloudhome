@@ -3176,6 +3176,9 @@ int dwc3_gadget_suspend(struct dwc3 *dwc)
 #ifdef CONFIG_USB_RTK_DWC3_DRD_MODE
 	dev_info(dwc->dev, "[USB] Exit %s", __func__);
 #endif
+
+	synchronize_irq(dwc->irq_gadget);
+
 	return 0;
 }
 
