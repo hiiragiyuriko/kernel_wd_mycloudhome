@@ -143,9 +143,12 @@ long ion_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		if (copy_from_user(&data, (void __user *)arg, sizeof(data)))
 			return -EFAULT;
 
-		handle = ion_handle_get_by_id(client, data.phys.handle);
-		if (IS_ERR(handle))
+		mutex_lock(&client->lock);
+                handle = ion_handle_get_by_id_nolock(client, data.handle.handle);
+                if (IS_ERR(handle)) {
+                        mutex_unlock(&client->lock);
 			return PTR_ERR(handle);
+		}
 		ret = ion_phys(client, handle, &addr, &len);
 
 		ion_handle_put(handle);
