@@ -4908,26 +4908,12 @@ static int binder_mmap(struct file *filp, struct vm_area_struct *vma)
 	vma->vm_ops = &binder_vm_ops;
 	vma->vm_private_data = proc;
 
-	if (binder_update_page_range(proc, 1, proc->buffer, proc->buffer + PAGE_SIZE, vma)) {
-		ret = -ENOMEM;
-		failure_string = "alloc small buf";
-		goto err_alloc_small_buf_failed;
-	}
-	buffer = proc->buffer;
-	INIT_LIST_HEAD(&proc->buffers);
-	list_add(&buffer->entry, &proc->buffers);
-	buffer->free = 1;
-	binder_insert_free_buffer(proc, buffer);
-	proc->free_async_space = proc->buffer_size / 2;
-	barrier();
+	ret = binder_alloc_mmap_handler(&proc->alloc, vma);
+	if (ret)
+		return ret;
 	mutex_lock(&proc->files_lock);
 	proc->files = get_files_struct(current);
 	mutex_unlock(&proc->files_lock);
-	proc->vma = vma;
-	proc->vma_vm_mm = vma->vm_mm;
-
-	/*pr_info("binder_mmap: %d %lx-%lx maps %p\n",
-		 proc->pid, vma->vm_start, vma->vm_end, proc->buffer);*/
 	return 0;
 
 err_bad_arg:
