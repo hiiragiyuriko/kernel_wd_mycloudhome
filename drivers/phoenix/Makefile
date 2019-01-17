@@ -1,4 +1,4 @@
-obj-m += rtl8821cu/
+obj-m += rtl8821au/
 
 obj-m += GP712drv/
 

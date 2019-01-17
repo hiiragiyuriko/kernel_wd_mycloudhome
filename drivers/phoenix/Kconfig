@@ -1,4 +1,4 @@
-source "drivers/phoenix/rtl8821cu/Kconfig"
+source "drivers/phoenix/rtl8821au/Kconfig"
 
 source "drivers/phoenix/GP712drv/Kconfig"
 
