@@ -112,6 +112,7 @@
 	 * pddrive_nf0, pddrive_nf1, pddrive_nf2, pddrive_nf3, pddrive_nf4 ; for hs200
 	 */
 
+
 	sata_phy@9803FF60 {
 		/delete-node/ sata-phy@1;
 	};
@@ -140,6 +141,7 @@
 		pddrive_nf_s0 = < 0x01 0x77 0x77 0x77 0x33 >;
 		pddrive_nf_s2 = < 0x01 0xbb 0xbb 0xbb 0x33 >;
 		phase_tuning = < 0x00 0x00 >;
+
 	};
 
 	dptx@9803D000 {
