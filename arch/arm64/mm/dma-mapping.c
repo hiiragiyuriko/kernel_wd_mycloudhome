@@ -441,20 +441,20 @@ out:
  * The following APIs are for dummy DMA ops *
  ********************************************/
 
-static void *__dummy_alloc(struct device *dev, size_t size,
+static void __maybe_unused *__dummy_alloc(struct device *dev, size_t size,
 			   dma_addr_t *dma_handle, gfp_t flags,
 			   unsigned long attrs)
 {
 	return NULL;
 }
 
-static void __dummy_free(struct device *dev, size_t size,
+static void __maybe_unused __dummy_free(struct device *dev, size_t size,
 			 void *vaddr, dma_addr_t dma_handle,
 			 unsigned long attrs)
 {
 }
 
-static int __dummy_mmap(struct device *dev,
+static int __maybe_unused __dummy_mmap(struct device *dev,
 			struct vm_area_struct *vma,
 			void *cpu_addr, dma_addr_t dma_addr, size_t size,
 			unsigned long attrs)
@@ -462,7 +462,7 @@ static int __dummy_mmap(struct device *dev,
 	return -ENXIO;
 }
 
-static dma_addr_t __dummy_map_page(struct device *dev, struct page *page,
+static dma_addr_t __maybe_unused __dummy_map_page(struct device *dev, struct page *page,
 				   unsigned long offset, size_t size,
 				   enum dma_data_direction dir,
 				   unsigned long attrs)
@@ -470,44 +470,44 @@ static dma_addr_t __dummy_map_page(struct device *dev, struct page *page,
 	return DMA_ERROR_CODE;
 }
 
-static void __dummy_unmap_page(struct device *dev, dma_addr_t dev_addr,
+static void __maybe_unused __dummy_unmap_page(struct device *dev, dma_addr_t dev_addr,
 			       size_t size, enum dma_data_direction dir,
 			       unsigned long attrs)
 {
 }
 
-static int __dummy_map_sg(struct device *dev, struct scatterlist *sgl,
+static int __maybe_unused __dummy_map_sg(struct device *dev, struct scatterlist *sgl,
 			  int nelems, enum dma_data_direction dir,
 			  unsigned long attrs)
 {
 	return 0;
 }
 
-static void __dummy_unmap_sg(struct device *dev,
+static void __maybe_unused __dummy_unmap_sg(struct device *dev,
 			     struct scatterlist *sgl, int nelems,
 			     enum dma_data_direction dir,
 			     unsigned long attrs)
 {
 }
 
-static void __dummy_sync_single(struct device *dev,
+static void __maybe_unused __dummy_sync_single(struct device *dev,
 				dma_addr_t dev_addr, size_t size,
 				enum dma_data_direction dir)
 {
 }
 
-static void __dummy_sync_sg(struct device *dev,
+static void __maybe_unused __dummy_sync_sg(struct device *dev,
 			    struct scatterlist *sgl, int nelems,
 			    enum dma_data_direction dir)
 {
 }
 
-static int __dummy_mapping_error(struct device *hwdev, dma_addr_t dma_addr)
+static int __maybe_unused __dummy_mapping_error(struct device *hwdev, dma_addr_t dma_addr)
 {
 	return 1;
 }
 
-static int __dummy_dma_supported(struct device *hwdev, u64 mask)
+static int __maybe_unused __dummy_dma_supported(struct device *hwdev, u64 mask)
 {
 	return 0;
 }
