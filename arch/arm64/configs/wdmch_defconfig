@@ -3292,7 +3292,7 @@ CONFIG_BACKLIGHT_GENERIC=m
 # CONFIG_BACKLIGHT_LV5207LP is not set
 # CONFIG_BACKLIGHT_BD6107 is not set
 # CONFIG_VGASTATE is not set
-CONFIG_HDMI=y
+# CONFIG_HDMI is not set
 
 #
 # Console display driver support
