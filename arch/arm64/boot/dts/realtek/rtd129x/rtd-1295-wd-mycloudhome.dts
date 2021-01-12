@@ -13,14 +13,16 @@
 /memreserve/ ACPU_IDMEM_PHYS ACPU_IDMEM_SIZE;
 /* 0x11000000 ~ 0x181fffff */
 /memreserve/ ION_MEDIA_HEAP_PHYS2 ION_MEDIA_HEAP_SIZE2;
+/* INITRAMFS HAD BEEN MODIFIED */
+/memreserve/	0x000000001D400000 0x00000000007F5673;
 
 #include "rtd-1295.dtsi"
 #include "rtd-1295-giraffe-common.dtsi"
 
 / {
 	chosen {
-		linux,initrd-start = <ROOTFS_NORMAL_START>;
-		linux,initrd-end = <ROOTFS_NORMAL_END>;
+		linux,initrd-start = <0x1D400000>;
+		linux,initrd-end = <0x1DBF5673>;
 		bootargs ="earlycon=uart8250,mmio32,0x98007800 console=ttyS0,115200 init=/init androidboot.hardware=kylin androidboot.storage=sata loglevel=4";
 	};
 
