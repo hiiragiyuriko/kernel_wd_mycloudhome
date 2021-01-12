@@ -200,4 +200,12 @@
 		compatible = "realtek,se";
 		status = "disabled";
 	};
+
+	ahci_sata: sata@9803F000 {
+		sata-port@0 {
+			resets = <&rst1 5>, <&rst1 7>;
+			reset-names = "rstn_sata_0",
+					"rstn_sata_phy_0";
+		};
+	};
 };
