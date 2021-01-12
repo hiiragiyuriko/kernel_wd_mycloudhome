@@ -195,4 +195,9 @@
 		compatible = "realtek,audio-out";
 		status = "disabled";
 	};
+
+	se@9800c000 {
+		compatible = "realtek,se";
+		status = "disabled";
+	}
 };
