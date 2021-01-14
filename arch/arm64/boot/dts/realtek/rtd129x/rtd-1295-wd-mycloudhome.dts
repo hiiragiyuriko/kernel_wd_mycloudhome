@@ -214,4 +214,14 @@
 			dr_mode = "host";
 		};
 	};
+
+	ehci@98013000 {
+		compatible = "Realtek,rtd129x-ehci";
+		status = "disable";
+	};
+
+	ohci@98013400 {
+		compatible = "Realtek,rtd129x-ohci";
+		status = "disable";
+	};
 };
