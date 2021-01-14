@@ -198,10 +198,20 @@
 	};
 
 	ahci_sata: sata@9803F000 {
+
 		sata-port@0 {
 			resets = <&rst1 5>, <&rst1 7>;
 			reset-names = "rstn_sata_0",
 					"rstn_sata_phy_0";
+		};
+	};
+
+	rtk_dwc3_drd@98013200 {
+		compatible = "Realtek,dwc3";
+
+		dwc3_drd@98020000 {
+			compatible = "synopsys,dwc3";
+			dr_mode = "host";
 		};
 	};
 };
